@@ -3,10 +3,6 @@
 
 using namespace std;
 
-bool isConsecutive(int front, int back) {
-    return front == back;
-}
-
 int main() {
     int n, m;
     int cnt = 0;
@@ -26,28 +22,30 @@ int main() {
         //행 순회
         for (vector<int> row: v) {
             for (int i = 0; i < n - 1; i++) {
-                if (isConsecutive(row[i], row[i + 1])) {
+                if (row[i] == row[i + 1]) {
                     consecutiveCount++;
                     if (consecutiveCount == m) {
                         cnt++;
-                        consecutiveCount = 1;
                         break;
                     }
+                }else{
+                    consecutiveCount = 1;
                 }
             }
             consecutiveCount = 1;
         }
 
         //열 순회
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n - 1; j++) {
-                if (isConsecutive(v[i][j], v[i][j + 1])) {
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < n - 1; i++) {
+                if (v[i][j] == v[i + 1][j]) {
                     consecutiveCount++;
                     if (consecutiveCount == m) {
                         cnt++;
-                        consecutiveCount = 1;
                         break;
                     }
+                }else{
+                    consecutiveCount = 1;
                 }
             }
             consecutiveCount = 1;
