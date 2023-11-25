@@ -14,11 +14,11 @@ int tileCost(int k) {
 int goldInArea(int centerRow, int centerCol, int k) {
     int cnt = 0;
     for (int row = centerRow - k; row <= centerRow + k; row++) {
-        for (int col = centerCol - k; col <= centerCol + k; col++){
+        for (int col = centerCol - k; col <= centerCol + k; col++) {
             if (row < 0 || row >= n || col < 0 || col >= n) {
                 continue;
             }
-            if (abs(row - centerRow) + abs(col - centerCol) <= k){
+            if (abs(row - centerRow) + abs(col - centerCol) <= k) {
                 cnt += grid[row][col];
             }
         }
@@ -43,7 +43,10 @@ int main() {
     while (tileCost(k) <= goldCount * m) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                maxGold = max(maxGold, goldInArea(i, j, k));
+                int currentGold = goldInArea(i, j, k);
+                if (tileCost(k) <= currentGold * m) {
+                    maxGold = max(maxGold, currentGold);
+                }
             }
         }
         k++;
